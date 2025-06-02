@@ -5,25 +5,47 @@ export const FavoritesContext = createContext();
 
 export const FavoritesProvider = ({ children }) => {
     const [favorites, setFavorites] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     // Load from localStorage on mount
     useEffect(() => {
-        const storedFavorites = localStorage.getItem("github-users-favorites");
-        if (storedFavorites) {
+        const loadFavorites = () => {
             try {
-                setFavorites(JSON.parse(storedFavorites));
+                const storedFavorites = localStorage.getItem("github-users-favorites");
+                if (storedFavorites) {
+                    const parsedFavorites = JSON.parse(storedFavorites);
+                    if (Array.isArray(parsedFavorites)) {
+                        setFavorites(parsedFavorites);
+                    }
+                }
             } catch (error) {
-                console.error("Failed to parse favorites", error);
+                console.error("Failed to load favorites from localStorage", error);
+                // Clear corrupted data
+                localStorage.removeItem("github-users-favorites");
+            } finally {
+                setIsLoaded(true);
             }
-        }
+        };
+
+        loadFavorites();
     }, []);
 
     // Save to localStorage when favorites change
     useEffect(() => {
-        localStorage.setItem("github-users-favorites", JSON.stringify(favorites));
-    }, [favorites]);
+        if (!isLoaded) return; // Don't save during initial load
+
+        try {
+            localStorage.setItem("github-users-favorites", JSON.stringify(favorites));
+        } catch (error) {
+            console.error("Failed to save favorites to localStorage", error);
+            if (error.name === 'QuotaExceededError') {
+                alert("Storage is full! Couldn't save your favorites.");
+            }
+        }
+    }, [favorites, isLoaded]);
 
     const addFavorite = (user) => {
+        if (!user?.id) return;
         setFavorites((prev) =>
             prev.some((fav) => fav.id === user.id) ? prev : [...prev, user]
         );
@@ -42,6 +64,7 @@ export const FavoritesProvider = ({ children }) => {
         addFavorite,
         removeFavorite,
         isFavorite,
+        isLoaded // Optional: if you want components to know when data is ready
     };
 
     return (
@@ -51,7 +74,6 @@ export const FavoritesProvider = ({ children }) => {
     );
 };
 
-// Create and export the custom hook
 export const useFavorites = () => {
     const context = useContext(FavoritesContext);
     if (context === undefined) {
