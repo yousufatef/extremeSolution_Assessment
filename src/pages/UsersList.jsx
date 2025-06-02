@@ -6,7 +6,7 @@ import UserCard from "../components/UserCard"
 import InfiniteScroll from "react-infinite-scroll-component"
 import LoadingSpinner from "../components/LoadingSpinner"
 
-export default function UsersListPage() {
+const UsersList = () => {
     const [searchTerm, setSearchTerm] = useState("")
     const debouncedSearchTerm = useDebounce(searchTerm, 300)
 
@@ -67,3 +67,5 @@ export default function UsersListPage() {
         </div>
     )
 }
+
+export default UsersList
