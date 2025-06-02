@@ -8,7 +8,7 @@ const Header = () => {
 
     return (
         <nav className="bg-white shadow-sm border-b">
-            <div className="container mx-auto px-4">
+            <div className="container">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center space-x-8">
                         <h1 className="text-[16px] md:text-xl font-bold text-gray-900">GitHub Users</h1>

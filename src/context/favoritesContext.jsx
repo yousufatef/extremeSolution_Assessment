@@ -1,4 +1,3 @@
-// src/context/favoritesContext.jsx
 import { createContext, useContext, useState, useEffect } from "react";
 
 export const FavoritesContext = createContext();
@@ -64,7 +63,7 @@ export const FavoritesProvider = ({ children }) => {
         addFavorite,
         removeFavorite,
         isFavorite,
-        isLoaded // Optional: if you want components to know when data is ready
+        isLoaded 
     };
 
     return (

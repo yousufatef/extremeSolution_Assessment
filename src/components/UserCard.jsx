@@ -5,8 +5,7 @@ const UserCard = ({ user, showProfileLink = false }) => {
     const { isFavorite, addFavorite, removeFavorite } = useFavorites()
     const userIsFavorite = isFavorite(user.id)
 
-    const handleFavoriteClick = (e) => {
-        e.stopPropagation() // Prevent event bubbling if needed
+    const handleFavoriteClick = () => {
         if (userIsFavorite) {
             removeFavorite(user.id)
         } else {
@@ -14,8 +13,7 @@ const UserCard = ({ user, showProfileLink = false }) => {
         }
     }
 
-    const handleProfileClick = (e) => {
-        e.stopPropagation()
+    const handleProfileClick = () => {
         window.open(user.html_url, "_blank", "noopener,noreferrer")
     }
 
