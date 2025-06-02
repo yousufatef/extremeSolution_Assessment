@@ -1,6 +1,6 @@
 # GitHub Users App
 
-This is a simple React + TypeScript web app that shows a list of GitHub users. It includes infinite scrolling, search, favorites, and routing — all built with clean design using Tailwind CSS.
+This is a simple React web app that shows a list of GitHub users. It includes infinite scrolling, search, favorites, and routing — all built with clean design using Tailwind CSS.
 
 ---
 
