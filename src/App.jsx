@@ -1,6 +1,6 @@
 import { Suspense } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Favorites from "./pages/favorites"
+import Favorites from "./pages/Favorites"
 import UsersList from "./pages/usersList"
 import LoadingSpinner from "./components/LoadingSpinner"
 import Header from "./components/Header"
