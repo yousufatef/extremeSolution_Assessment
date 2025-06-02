@@ -11,11 +11,11 @@ const Header = () => {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     <div className="flex items-center space-x-8">
-                        <h1 className="text-xl font-bold text-gray-900">GitHub Users</h1>
-                        <div className="flex space-x-4">
+                        <h1 className="text-[16px] md:text-xl font-bold text-gray-900">GitHub Users</h1>
+                        <div className="flex space-x-2 md:space-x-4">
                             <Link
                                 to="/"
-                                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === "/"
+                                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm transition-colors ${location.pathname === "/"
                                     ? "bg-blue-100 text-blue-700"
                                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                                     }`}
@@ -25,7 +25,7 @@ const Header = () => {
                             </Link>
                             <Link
                                 to="/favorites"
-                                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === "/favorites"
+                                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm transition-colors ${location.pathname === "/favorites"
                                     ? "bg-blue-100 text-blue-700"
                                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                                     }`}
